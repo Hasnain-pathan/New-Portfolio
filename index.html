@@ -1,248 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Signin & ToDo App - Single Page</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0f2027;
-    background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
-    color: #e0e0e0;
-    margin: 0; padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .container {
-    background: rgba(0,0,0,0.7);
-    padding: 40px;
-    border-radius: 15px;
-    width: 350px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.8);
-  }
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #00bcd4;
-  }
-  input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 12px 10px;
-    margin: 8px 0 20px 0;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-  }
-  button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(90deg, #00bcd4, #007a8a);
-    border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  button:hover {
-    background: linear-gradient(90deg, #007a8a, #00bcd4);
-  }
-  .error {
-    color: #ff5555;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  #todoApp {
-    display: none;
-    flex-direction: column;
-  }
-  #todoApp header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-  }
-.todo-item {
-  word-wrap: break-word;      
-  white-space: normal;        
-  max-width: 100%;             
-  padding: 8px 12px;
-  border-radius: 6px;
-  background-color: #222;    
-  color: #eee;                  
-  margin-bottom: 10px;
-  font-size: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+import React, { useEffect, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Float, OrbitControls, Stars } from "@react-three/drei";
+import { motion } from "framer-motion";
+
+// 3D Floating Object
+function FloatingShape() {
+  const mesh = useRef();
+  useFrame(() => {
+    mesh.current.rotation.x += 0.003;
+    mesh.current.rotation.y += 0.004;
+  });
+
+  return (
+    <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
+      <mesh ref={mesh}>
+        <icosahedronGeometry args={[1.5, 1]} />
+        <meshStandardMaterial color="#8b5cf6" wireframe />
+      </mesh>
+    </Float>
+  );
 }
 
-  #todoApp h2 {
-    color: #00bcd4;
-    margin: 0;
-  }
-  #logoutBtn {
-    background: transparent;
-    border: 2px solid #00bcd4;
-    padding: 6px 16px;
-    color: #00bcd4;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  #logoutBtn:hover {
-    background: #00bcd4;
-    color: #0f2027;
-  }
-  #newTask {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  #newTask input {
-    flex-grow: 1;
-    padding: 10px 12px;
-    border-radius: 8px 0 0 8px;
-    border: none;
-    font-size: 1rem;
-  }
-  #newTask button {
-    padding: 10px 16px;
-    border-radius: 0 8px 8px 0;
-  }
-  ul#taskList {
-    list-style: none;
-    padding-left: 0;
-  }
-  ul#taskList li {
-    background: rgba(255, 255, 255, 0.1);
-    margin-bottom: 12px;
-    padding: 12px 15px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  ul#taskList li button {
-    background: #ff5555;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 15px;
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease;
-  }
-  ul#taskList li button:hover {
-    background: #ff2222;
-  }
-</style>
-</head>
-<body>
+function Hero3D() {
+  return (
+    <Canvas camera={{ position: [0, 0, 5] }}>
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} />
+      <Stars radius={50} depth={50} count={2000} factor={4} />
+      <FloatingShape />
+      <OrbitControls enableZoom={false} />
+    </Canvas>
+  );
+}
 
-<div class="container" id="signinDiv">
-  <h2>Sign In</h2>
-  <div class="error" id="errorMsg"></div>
-  <input type="text" id="username" placeholder="Username" autocomplete="off" />
-  <input type="password" id="password" placeholder="Password" autocomplete="off" />
-  <button onclick="login()">Login</button>
-</div>
+export default function Portfolio() {
+  const [loading, setLoading] = useState(true);
 
-<div class="container" id="todoApp">
-  <header>
-    <h2>My To-Do List</h2>
-    <button id="logoutBtn" onclick="logout()">Logout</button>
-  </header>
-  <div id="newTask">
-    <input type="text" id="taskInput" placeholder="Add a new task..." />
-    <button onclick="addTask()">Add</button>
-  </div>
-  <ul id="taskList"></ul>
-</div>
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1800);
+  }, []);
 
-<script>
-  const signinDiv = document.getElementById('signinDiv');
-  const todoApp = document.getElementById('todoApp');
-  const errorMsg = document.getElementById('errorMsg');
-  const usernameInput = document.getElementById('username');
-  const passwordInput = document.getElementById('password');
-  const taskInput = document.getElementById('taskInput');
-  const taskList = document.getElementById('taskList');
-
-  // Hardcoded credentials
-  const validUser = 'Hasnain';
-  const validPass = '7827079514';
-
-  function login() {
-    errorMsg.textContent = '';
-    if (usernameInput.value === validUser && passwordInput.value === validPass) {
-      signinDiv.style.display = 'none';
-      todoApp.style.display = 'flex';
-      usernameInput.value = '';
-      passwordInput.value = '';
-      loadTasks();
-    } else {
-      errorMsg.textContent = 'Invalid username or password!';
-    }
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-black text-white">
+        <div className="animate-pulse text-xl tracking-widest">
+          Loading Portfolio...
+        </div>
+      </div>
+    );
   }
 
-  function logout() {
-    todoApp.style.display = 'none';
-    signinDiv.style.display = 'block';
-    clearTasks();
-  }
+  return (
+    <div className="bg-black text-white overflow-x-hidden font-sans">
+      {/* HERO */}
+      <section className="h-screen flex flex-col justify-center items-center relative text-center">
+        <div className="absolute inset-0 opacity-40">
+          <Hero3D />
+        </div>
 
-  // Save tasks in localStorage
-  function saveTasks(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="z-10"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            Hasnain Khan
+          </h1>
 
-  // Load tasks from localStorage
-  function loadTasks() {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    taskList.innerHTML = '';
-    tasks.forEach((task, index) => {
-      addTaskToDOM(task, index);
-    });
-  }
+          <p className="mt-4 text-gray-300 text-lg">
+            Digital Marketing & Performance Marketing Specialist
+          </p>
 
-  function clearTasks() {
-    taskList.innerHTML = '';
-  }
+          <div className="mt-8 flex gap-4 justify-center">
+            <a href="#projects">
+              <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition shadow-lg">
+                View My Work
+              </button>
+            </a>
 
-  function addTask() {
-    const taskText = taskInput.value.trim();
-    if (taskText === '') return;
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.push(taskText);
-    saveTasks(tasks);
-    addTaskToDOM(taskText, tasks.length - 1);
-    taskInput.value = '';
-  }
+            <a href="#contact">
+              <button className="px-6 py-3 rounded-xl border border-purple-500 hover:bg-purple-600 hover:scale-110 transition">
+                Contact Me
+              </button>
+            </a>
+          </div>
+        </motion.div>
+      </section>
 
-  function addTaskToDOM(taskText, index) {
-    const li = document.createElement('li');
-    li.textContent = taskText;
+      {/* ABOUT */}
+      <section className="py-20 px-6 md:px-20">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-xl border border-white/10"
+        >
+          <h2 className="text-3xl font-bold mb-4">About Me</h2>
+          <p className="text-gray-300 leading-relaxed">
+            I help businesses scale using performance marketing, funnels, and
+            automation. With deep expertise in GoHighLevel, Meta Ads, and Google
+            Ads, I focus on generating high-quality leads and maximizing ROI.
+          </p>
+        </motion.div>
+      </section>
 
-    const delBtn = document.createElement('button');
-    delBtn.textContent = 'Delete';
-    delBtn.onclick = function () {
-      deleteTask(index);
-    };
+      {/* SKILLS */}
+      <section className="py-20 px-6 md:px-20">
+        <h2 className="text-3xl font-bold mb-10">Skills</h2>
 
-    li.appendChild(delBtn);
-    taskList.appendChild(li);
-  }
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            "Performance Marketing",
+            "Lead Generation",
+            "Funnels",
+            "GoHighLevel",
+            "Meta Ads",
+            "Google Ads",
+            "Advanced Excel",
+          ].map((skill, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.1, rotate: 2 }}
+              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition"
+            >
+              {skill}
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-  function deleteTask(index) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.splice(index, 1);
-    saveTasks(tasks);
-    loadTasks();
-  }
-</script>
+      {/* PROJECTS */}
+      <section id="projects" className="py-20 px-6 md:px-20">
+        <h2 className="text-3xl font-bold mb-10">Projects</h2>
 
-</body>
-</html>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Lead Generation Campaign",
+              result: "500+ Leads / Month",
+            },
+            {
+              title: "E-commerce Scaling",
+              result: "4.2x ROAS",
+            },
+            {
+              title: "Local Business Ads",
+              result: "45% Lower CPL",
+            },
+            {
+              title: "Funnel Automation",
+              result: "3x Conversion Rate",
+            },
+          ].map((project, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow-lg"
+            >
+              <h3 className="text-xl font-bold">{project.title}</h3>
+              <p className="text-purple-400 mt-2">{project.result}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="py-20 px-6 md:px-20">
+        <h2 className="text-3xl font-bold mb-10">Services</h2>
+
+        <div className="grid md:grid-cols-4 gap-6">
+          {[
+            "Performance Marketing",
+            "Lead Generation",
+            "CRM Automation",
+            "Digital Strategy",
+          ].map((service, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.1 }}
+              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl text-center shadow-lg"
+            >
+              {service}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-20 px-6 md:px-20 text-center">
+        <h2 className="text-3xl font-bold mb-6">Contact</h2>
+
+        <p className="text-gray-300">Email: hasnain@email.com</p>
+        <p className="text-gray-300">WhatsApp: +91 XXXXXXXX</p>
+        <p className="text-gray-300">LinkedIn: linkedin.com/in/hasnain</p>
+
+        <button className="mt-6 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition shadow-xl">
+          Let’s Work Together
+        </button>
+      </section>
+    </div>
+  );
+}
