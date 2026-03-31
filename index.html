@@ -1,204 +1,159 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, OrbitControls, Stars } from "@react-three/drei";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasnain Khan Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// 3D Floating Object
-function FloatingShape() {
-  const mesh = useRef();
-  useFrame(() => {
-    mesh.current.rotation.x += 0.003;
-    mesh.current.rotation.y += 0.004;
-  });
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  return (
-    <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-      <mesh ref={mesh}>
-        <icosahedronGeometry args={[1.5, 1]} />
-        <meshStandardMaterial color="#8b5cf6" wireframe />
-      </mesh>
-    </Float>
-  );
-}
+  <style>
+    body {
+      background: black;
+      overflow-x: hidden;
+    }
 
-function Hero3D() {
-  return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
-      <ambientLight intensity={0.6} />
-      <pointLight position={[10, 10, 10]} />
-      <Stars radius={50} depth={50} count={2000} factor={4} />
-      <FloatingShape />
-      <OrbitControls enableZoom={false} />
-    </Canvas>
-  );
-}
+    /* Glow */
+    .glow {
+      box-shadow: 0 0 20px rgba(139,92,246,0.6);
+    }
 
-export default function Portfolio() {
-  const [loading, setLoading] = useState(true);
+    /* Floating animation */
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1800);
-  }, []);
+    @keyframes float {
+      0% { transform: translateY(0px);}
+      50% { transform: translateY(-20px);}
+      100% { transform: translateY(0px);}
+    }
 
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center bg-black text-white">
-        <div className="animate-pulse text-xl tracking-widest">
-          Loading Portfolio...
-        </div>
-      </div>
-    );
-  }
+    /* Fade animation */
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+    }
 
-  return (
-    <div className="bg-black text-white overflow-x-hidden font-sans">
-      {/* HERO */}
-      <section className="h-screen flex flex-col justify-center items-center relative text-center">
-        <div className="absolute inset-0 opacity-40">
-          <Hero3D />
-        </div>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="z-10"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Hasnain Khan
-          </h1>
+<body class="text-white font-sans">
 
-          <p className="mt-4 text-gray-300 text-lg">
-            Digital Marketing & Performance Marketing Specialist
-          </p>
+<!-- HERO -->
+<section class="h-screen flex flex-col justify-center items-center text-center relative">
 
-          <div className="mt-8 flex gap-4 justify-center">
-            <a href="#projects">
-              <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition shadow-lg">
-                View My Work
-              </button>
-            </a>
+  <!-- Floating Shapes -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="w-40 h-40 bg-purple-500 opacity-20 rounded-full absolute top-20 left-10 blur-3xl float"></div>
+    <div class="w-60 h-60 bg-blue-500 opacity-20 rounded-full absolute bottom-10 right-10 blur-3xl float"></div>
+  </div>
 
-            <a href="#contact">
-              <button className="px-6 py-3 rounded-xl border border-purple-500 hover:bg-purple-600 hover:scale-110 transition">
-                Contact Me
-              </button>
-            </a>
-          </div>
-        </motion.div>
-      </section>
+  <div class="fade-in z-10">
+    <h1 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+      Hasnain Khan
+    </h1>
 
-      {/* ABOUT */}
-      <section className="py-20 px-6 md:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-xl border border-white/10"
-        >
-          <h2 className="text-3xl font-bold mb-4">About Me</h2>
-          <p className="text-gray-300 leading-relaxed">
-            I help businesses scale using performance marketing, funnels, and
-            automation. With deep expertise in GoHighLevel, Meta Ads, and Google
-            Ads, I focus on generating high-quality leads and maximizing ROI.
-          </p>
-        </motion.div>
-      </section>
+    <p class="mt-4 text-gray-300 text-lg">
+      Digital Marketing & Performance Marketing Specialist
+    </p>
 
-      {/* SKILLS */}
-      <section className="py-20 px-6 md:px-20">
-        <h2 className="text-3xl font-bold mb-10">Skills</h2>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            "Performance Marketing",
-            "Lead Generation",
-            "Funnels",
-            "GoHighLevel",
-            "Meta Ads",
-            "Google Ads",
-            "Advanced Excel",
-          ].map((skill, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.1, rotate: 2 }}
-              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow-lg hover:shadow-purple-500/30 transition"
-            >
-              {skill}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section id="projects" className="py-20 px-6 md:px-20">
-        <h2 className="text-3xl font-bold mb-10">Projects</h2>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {[
-            {
-              title: "Lead Generation Campaign",
-              result: "500+ Leads / Month",
-            },
-            {
-              title: "E-commerce Scaling",
-              result: "4.2x ROAS",
-            },
-            {
-              title: "Local Business Ads",
-              result: "45% Lower CPL",
-            },
-            {
-              title: "Funnel Automation",
-              result: "3x Conversion Rate",
-            },
-          ].map((project, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold">{project.title}</h3>
-              <p className="text-purple-400 mt-2">{project.result}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section className="py-20 px-6 md:px-20">
-        <h2 className="text-3xl font-bold mb-10">Services</h2>
-
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            "Performance Marketing",
-            "Lead Generation",
-            "CRM Automation",
-            "Digital Strategy",
-          ].map((service, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.1 }}
-              className="bg-white/10 backdrop-blur-lg p-6 rounded-xl text-center shadow-lg"
-            >
-              {service}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="py-20 px-6 md:px-20 text-center">
-        <h2 className="text-3xl font-bold mb-6">Contact</h2>
-
-        <p className="text-gray-300">Email: hasnain@email.com</p>
-        <p className="text-gray-300">WhatsApp: +91 XXXXXXXX</p>
-        <p className="text-gray-300">LinkedIn: linkedin.com/in/hasnain</p>
-
-        <button className="mt-6 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition shadow-xl">
-          Let’s Work Together
+    <div class="mt-8 flex gap-4 justify-center">
+      <a href="#projects">
+        <button class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition glow">
+          View My Work
         </button>
-      </section>
+      </a>
+
+      <a href="#contact">
+        <button class="px-6 py-3 rounded-xl border border-purple-500 hover:bg-purple-600 hover:scale-110 transition">
+          Contact Me
+        </button>
+      </a>
     </div>
-  );
-}
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="py-20 px-6 md:px-20">
+  <div class="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-xl fade-in">
+    <h2 class="text-3xl font-bold mb-4">About Me</h2>
+    <p class="text-gray-300">
+      I help businesses scale using performance marketing, funnels, and automation.
+      Expert in GoHighLevel, Meta Ads, and Google Ads with a focus on ROI-driven strategies.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="py-20 px-6 md:px-20">
+  <h2 class="text-3xl font-bold mb-10">Skills</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Performance Marketing</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Lead Generation</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Funnels</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">GoHighLevel</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Meta Ads</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Google Ads</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-20 px-6 md:px-20">
+  <h2 class="text-3xl font-bold mb-10">Projects</h2>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-bold">Lead Generation Campaign</h3>
+      <p class="text-purple-400">500+ Leads / Month</p>
+    </div>
+
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-bold">E-commerce Scaling</h3>
+      <p class="text-purple-400">4.2x ROAS</p>
+    </div>
+
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-bold">Local Ads</h3>
+      <p class="text-purple-400">45% Lower CPL</p>
+    </div>
+
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-bold">Funnel Automation</h3>
+      <p class="text-purple-400">3x Conversion Rate</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="py-20 px-6 md:px-20">
+  <h2 class="text-3xl font-bold mb-10">Services</h2>
+
+  <div class="grid md:grid-cols-4 gap-6 text-center">
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Performance Marketing</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Lead Generation</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">CRM Automation</div>
+    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Digital Strategy</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 px-6 md:px-20 text-center">
+  <h2 class="text-3xl font-bold mb-6">Contact</h2>
+
+  <p>Email: your@email.com</p>
+  <p>WhatsApp: +91 XXXXXXXX</p>
+  <p>LinkedIn: linkedin.com/in/hasnain</p>
+
+  <button class="mt-6 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition glow">
+    Let's Work Together
+  </button>
+</section>
+
+</body>
+</html>
