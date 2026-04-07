@@ -1,159 +1,890 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hasnain Khan Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasnain Khan - Digital Marketing Specialist & Performance Marketer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        :root {
+            --primary: #00d4ff;
+            --secondary: #ff6b9d;
+            --dark-bg: #0a0e27;
+            --card-bg: #141829;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent: #ffd700;
+        }
 
-  <style>
-    body {
-      background: black;
-      overflow-x: hidden;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* Glow */
-    .glow {
-      box-shadow: 0 0 20px rgba(139,92,246,0.6);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    /* Floating animation */
-    .float {
-      animation: float 6s ease-in-out infinite;
-    }
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
 
-    @keyframes float {
-      0% { transform: translateY(0px);}
-      50% { transform: translateY(-20px);}
-      100% { transform: translateY(0px);}
-    }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* Fade animation */
-    .fade-in {
-      animation: fadeIn 1.2s ease forwards;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.7);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-  </style>
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: slideUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--primary);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 212, 255, 0.03) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 80px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-badge {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .skill-badge h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-level {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .skill-level-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            animation: fillBar 1s ease-out forwards;
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--width, 90%);
+            }
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .portfolio-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            color: white;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+        }
+
+        .portfolio-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">HK</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<body class="text-white font-sans">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Hasnain Khan</span></h1>
+                <p>Digital Marketing Specialist & Performance Marketing Expert</p>
+                <p style="font-size: 1rem; margin-bottom: 1rem;">Building high-converting marketing funnels with GoHighLevel, Meta Ads, and Data-Driven Strategies</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#portfolio" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+        </div>
+    </section>
 
-<!-- HERO -->
-<section class="h-screen flex flex-col justify-center items-center text-center relative">
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Results-Driven Digital Marketer</h3>
+                    <p>I'm a results-driven digital marketing specialist with core expertise in the GoHighLevel platform. I help businesses scale by building automated, high-converting marketing funnels. From paid advertising to complex automations, I architect and execute strategies that turn clicks into customers.</p>
+                    <p>With a foundation in performance marketing and a passion for marketing automation, I've helped numerous businesses achieve their growth goals through data-backed strategies and innovative marketing ecosystems.</p>
+                    <p>Whether it's building conversion-optimized funnels, managing multi-channel campaigns, or creating sophisticated automation workflows, I deliver measurable results that impact the bottom line.</p>
+                </div>
+                <div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Campaigns Managed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">150%</div>
+                            <div class="stat-label">Avg. ROI Growth</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">30+</div>
+                            <div class="stat-label">Clients Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">$2M+</div>
+                            <div class="stat-label">Revenue Generated</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Floating Shapes -->
-  <div class="absolute inset-0 overflow-hidden">
-    <div class="w-40 h-40 bg-purple-500 opacity-20 rounded-full absolute top-20 left-10 blur-3xl float"></div>
-    <div class="w-60 h-60 bg-blue-500 opacity-20 rounded-full absolute bottom-10 right-10 blur-3xl float"></div>
-  </div>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">My <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Performance Marketing</h3>
+                    <p>Driving targeted traffic with data-backed strategies in Google Ads, Meta Ads, and social media campaigns. Every dollar spent is optimized for maximum ROI.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>GoHighLevel Funnels</h3>
+                    <p>Building, managing, and optimizing your entire GHL ecosystem, from landing pages to sales pipelines. Complete funnel architecture for conversion optimization.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Marketing Automation</h3>
+                    <p>Creating complex workflows, email/SMS campaigns, and triggers in GHL to nurture leads automatically. Scale your business without scaling your team.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✍️</div>
+                    <h3>SEO & Content Strategy</h3>
+                    <p>Boosting organic visibility and establishing authority through targeted SEO and high-value content. Long-term sustainable growth through organic channels.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Conversion Rate Optimization</h3>
+                    <p>Analyzing user behavior and optimizing every touchpoint to increase conversion rates. A/B testing and data analysis to maximize sales.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Comprehensive tracking, reporting, and analysis of all marketing metrics. Data-driven insights to guide strategic decisions and identify growth opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="fade-in z-10">
-    <h1 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-      Hasnain Khan
-    </h1>
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">My <span>Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-badge">
+                    <h4>Meta Ads</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>Google Ads</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>GoHighLevel</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 98%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>Funnel Building</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>Email Marketing</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>CRM Automation</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 93%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>Content Marketing</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>SEO Strategy</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-badge">
+                    <h4>Data Analytics</h4>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--width: 89%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p class="mt-4 text-gray-300 text-lg">
-      Digital Marketing & Performance Marketing Specialist
-    </p>
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">My <span>Work</span></h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>Galaxy Fluence Platform</h3>
+                    </div>
+                    <div class="portfolio-content">
+                        <p>A comprehensive digital marketing platform focused on performance-driven campaigns and GoHighLevel automation systems.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">GoHighLevel</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>E-commerce Funnel Optimization</h3>
+                    </div>
+                    <div class="portfolio-content">
+                        <p>Designed and implemented high-converting sales funnels that increased conversion rates by 150% and generated significant revenue growth.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Funnels</span>
+                            <span class="tag">CRO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>Meta Ads Campaign Series</h3>
+                    </div>
+                    <div class="portfolio-content">
+                        <p>Managed multi-channel Meta Ads campaigns for B2B and B2C clients, achieving consistent ROAS of 4:1 or higher across diverse industries.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Meta Ads</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>Lead Generation System</h3>
+                    </div>
+                    <div class="portfolio-content">
+                        <p>Built automated lead generation and nurturing workflows that delivered 500+ qualified leads per month with minimal manual intervention.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Automation</span>
+                            <span class="tag">Leads</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>Content Marketing Strategy</h3>
+                    </div>
+                    <div class="portfolio-content">
+                        <p>Developed and executed comprehensive content strategies that established authority in niche markets and drove organic traffic growth.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>Email Marketing Campaigns</h3>
+                    </div>
+                    <div class="portfolio-content">
+                        <p>Created and optimized email sequences that generated millions in revenue through strategic segmentation and personalization.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Email</span>
+                            <span class="tag">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="mt-8 flex gap-4 justify-center">
-      <a href="#projects">
-        <button class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition glow">
-          View My Work
-        </button>
-      </a>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work <span>Together</span></h2>
+            <div class="contact-content">
+                <p>Ready to scale your business with results-driven digital marketing strategies? Let's connect and discuss how I can help.</p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/hasnain-khan-digital-marketing/" class="contact-link" target="_blank">
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://hasnain-pathan.netlify.app/" class="contact-link" target="_blank">
+                        <span>Portfolio Site</span>
+                    </a>
+                    <a href="https://hasnainkhandigital.blogspot.com/" class="contact-link" target="_blank">
+                        <span>Blog</span>
+                    </a>
+                    <a href="mailto:hasnain@example.com" class="contact-link">
+                        <span>Email</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <a href="#contact">
-        <button class="px-6 py-3 rounded-xl border border-purple-500 hover:bg-purple-600 hover:scale-110 transition">
-          Contact Me
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Hasnain Khan. All rights reserved. Based in Delhi, India.</p>
+        </div>
+    </footer>
 
-<!-- ABOUT -->
-<section class="py-20 px-6 md:px-20">
-  <div class="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-xl fade-in">
-    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-gray-300">
-      I help businesses scale using performance marketing, funnels, and automation.
-      Expert in GoHighLevel, Meta Ads, and Google Ads with a focus on ROI-driven strategies.
-    </p>
-  </div>
-</section>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-<!-- SKILLS -->
-<section class="py-20 px-6 md:px-20">
-  <h2 class="text-3xl font-bold mb-10">Skills</h2>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Performance Marketing</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Lead Generation</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Funnels</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">GoHighLevel</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Meta Ads</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Google Ads</div>
-  </div>
-</section>
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-<!-- PROJECTS -->
-<section id="projects" class="py-20 px-6 md:px-20">
-  <h2 class="text-3xl font-bold mb-10">Projects</h2>
-
-  <div class="grid md:grid-cols-2 gap-6">
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
-      <h3 class="font-bold">Lead Generation Campaign</h3>
-      <p class="text-purple-400">500+ Leads / Month</p>
-    </div>
-
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
-      <h3 class="font-bold">E-commerce Scaling</h3>
-      <p class="text-purple-400">4.2x ROAS</p>
-    </div>
-
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
-      <h3 class="font-bold">Local Ads</h3>
-      <p class="text-purple-400">45% Lower CPL</p>
-    </div>
-
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-105 transition">
-      <h3 class="font-bold">Funnel Automation</h3>
-      <p class="text-purple-400">3x Conversion Rate</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="py-20 px-6 md:px-20">
-  <h2 class="text-3xl font-bold mb-10">Services</h2>
-
-  <div class="grid md:grid-cols-4 gap-6 text-center">
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Performance Marketing</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Lead Generation</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">CRM Automation</div>
-    <div class="bg-white/10 p-6 rounded-xl hover:scale-110 transition">Digital Strategy</div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-20 px-6 md:px-20 text-center">
-  <h2 class="text-3xl font-bold mb-6">Contact</h2>
-
-  <p>Email: your@email.com</p>
-  <p>WhatsApp: +91 XXXXXXXX</p>
-  <p>LinkedIn: linkedin.com/in/hasnain</p>
-
-  <button class="mt-6 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-110 transition glow">
-    Let's Work Together
-  </button>
-</section>
-
+        document.querySelectorAll('.service-card, .portfolio-card, .skill-badge').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
