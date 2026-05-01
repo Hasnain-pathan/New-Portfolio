@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasnain Khan - Digital Marketing Specialist & Performance Marketer</title>
+    <title>Hasnen Khan - Digital Marketing Expert | Premium Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,13 +13,15 @@
         }
 
         :root {
-            --primary: #00d4ff;
-            --secondary: #ff6b9d;
-            --dark-bg: #0a0e27;
-            --card-bg: #141829;
-            --text-primary: #ffffff;
-            --text-secondary: #a0aec0;
-            --accent: #ffd700;
+            --primary: #1a9b8e;
+            --secondary: #0d5f57;
+            --accent: #4ecdc4;
+            --dark: #0f1419;
+            --light: #f8f9fa;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --gradient-1: linear-gradient(135deg, #1a9b8e 0%, #4ecdc4 100%);
+            --gradient-2: linear-gradient(135deg, #0d5f57 0%, #1a9b8e 100%);
         }
 
         html {
@@ -27,99 +30,180 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            color: var(--text-primary);
             line-height: 1.6;
+            color: var(--text);
+            background: var(--light);
             overflow-x: hidden;
         }
 
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            backdrop-filter: blur(10px);
-            background: rgba(10, 14, 39, 0.7);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-            z-index: 1000;
-            animation: slideDown 0.6s ease-out;
-        }
-
-        @keyframes slideDown {
+        /* ============ ANIMATIONS ============ */
+        @keyframes fadeInUp {
             from {
-                transform: translateY(-100%);
                 opacity: 0;
+                transform: translateY(30px);
             }
             to {
+                opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(26, 155, 142, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(78, 205, 196, 0.6);
+            }
+        }
+
+        @keyframes rotate3d {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
                 opacity: 1;
             }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 49% {
+                border-right-color: var(--primary);
+            }
+            50%, 100% {
+                border-right-color: transparent;
+            }
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
         }
 
         nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 20px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -1px;
+            transition: all 0.3s;
+        }
+
+        nav .logo:hover {
+            transform: scale(1.1);
         }
 
         nav ul {
-            display: flex;
             list-style: none;
-            gap: 2rem;
+            display: flex;
+            gap: 2.5rem;
         }
 
         nav a {
-            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.9rem;
+            color: var(--text);
             font-weight: 500;
-            transition: all 0.3s ease;
             position: relative;
+            transition: color 0.3s;
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
+            background: var(--gradient-1);
+            transition: width 0.3s;
         }
 
         nav a:hover {
@@ -130,87 +214,133 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* ============ HERO SECTION ============ */
         .hero {
-            min-height: 100vh;
-            display: flex;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            padding: 10rem 2rem 6rem;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(26, 155, 142, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 60px;
-            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .hero-text {
+            animation: slideInLeft 0.8s ease-out;
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            animation: slideUp 0.8s ease-out 0.1s backwards;
-        }
-
-        .hero-content h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .hero-text h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 900;
         }
 
-        .hero-content p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: typewriter 3s steps(40, end);
+            overflow: hidden;
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
             margin-bottom: 2rem;
-            animation: slideUp 0.8s ease-out 0.2s backwards;
+            line-height: 1.8;
         }
 
-        @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .hero-buttons {
+        .cta-buttons {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            animation: slideUp 0.8s ease-out 0.3s backwards;
+            margin-bottom: 2rem;
         }
 
         .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            padding: 1rem 2.5rem;
             border: none;
-            cursor: pointer;
+            border-radius: 50px;
             font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-1);
             color: white;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(26, 155, 142, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.5);
         }
 
         .btn-secondary {
@@ -220,341 +350,660 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
+            background: var(--primary);
+            color: white;
             transform: translateY(-3px);
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        /* Hero Image with 3D Effect */
+        .hero-image {
+            animation: slideInRight 0.8s ease-out;
+            perspective: 1000px;
+        }
+
+        .profile-card {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .profile-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .profile-card:hover .profile-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .profile-card-front,
+        .profile-card-back {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(10px);
-            }
+        .profile-card-front {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 20px 60px rgba(26, 155, 142, 0.4);
         }
 
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--primary);
+        .profile-card-front .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* About Section */
-        .about {
-            padding: 80px 0;
+        .profile-card-front h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
+        .profile-card-front p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .profile-card-back {
+            background: var(--gradient-2);
+            color: white;
+            transform: rotateY(180deg);
+            box-shadow: 0 20px 60px rgba(13, 95, 87, 0.4);
             text-align: center;
         }
 
-        .section-title span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .profile-card-back h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .profile-card-back p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ============ STATS SECTION ============ */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 3px solid var(--primary);
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
         .stat-label {
-            color: var(--text-secondary);
+            color: var(--text-light);
             font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
 
-        /* Services Section */
+        /* ============ ABOUT SECTION ============ */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .about .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .highlight-item {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.15);
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+        }
+
+        .highlight-item strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .highlight-item p {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* ============ SERVICES SECTION ============ */
         .services {
-            padding: 80px 0;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+        }
+
+        .services .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .service-card {
-            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 212, 255, 0.03) 100%);
+            background: white;
             padding: 2.5rem;
             border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(26, 155, 142, 0.2);
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
+            color: var(--primary);
             margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         .service-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            color: var(--text-light);
+            line-height: 1.8;
         }
 
-        /* Skills Section */
+        /* ============ SKILLS SECTION ============ */
         .skills {
-            padding: 80px 0;
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .skills .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .skill-badge {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .skill-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0.1;
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .skill-badge:hover::before {
+            left: 100%;
         }
 
         .skill-badge:hover {
             border-color: var(--primary);
-            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.2);
         }
 
-        .skill-badge h4 {
+        .skill-badge strong {
             color: var(--primary);
+            font-size: 1.1rem;
+            display: block;
             margin-bottom: 0.5rem;
         }
 
-        .skill-level {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-top: 0.5rem;
+        .skill-badge p {
+            font-size: 0.9rem;
+            color: var(--text-light);
         }
 
-        .skill-level-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-            animation: fillBar 1s ease-out forwards;
+        /* ============ CERTIFICATIONS SECTION ============ */
+        .certifications {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
         }
 
-        @keyframes fillBar {
-            from {
-                width: 0;
-            }
-            to {
-                width: var(--width, 90%);
-            }
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 80px 0;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .portfolio-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 2rem;
-            color: white;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-        }
-
-        .portfolio-header h3 {
-            font-size: 1.5rem;
-        }
-
-        .portfolio-content {
-            padding: 2rem;
-        }
-
-        .portfolio-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .contact-content {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            max-width: 600px;
+        .certifications .container {
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .contact-content p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .contact-links {
+        .cert-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .cert-card::after {
+            content: '✓';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(26, 155, 142, 0.2);
+        }
+
+        .cert-card:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cert-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .cert-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ============ EXPERIENCE SECTION ============ */
+        .experience {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .experience .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 30px;
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.2);
+        }
+
+        .experience-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .experience-meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experience-item p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* ============ CTA SECTION ============ */
+        .cta-section {
+            background: var(--gradient-2);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
-        .contact-link {
-            display: inline-flex;
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
+            justify-content: center;
+            background: rgba(78, 205, 196, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            color: var(--accent);
             text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s;
+            font-size: 1.2rem;
         }
 
-        .contact-link:hover {
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateY(-3px);
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
         }
 
-        /* Footer */
-        footer {
-            padding: 3rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
-            color: var(--text-secondary);
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
         }
 
-        /* Responsive */
+        /* ============ SCROLL ANIMATIONS ============ */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .scroll-animate.animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
             nav ul {
                 gap: 1rem;
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
-            .hero-content h1 {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
+            .hero-text .subtitle {
+                font-size: 1.2rem;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
-            .stats {
-                grid-template-columns: 1fr;
+            .cta-section h2 {
+                font-size: 2rem;
             }
 
-            .hero-buttons {
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-card {
+                width: 250px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 0.8rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons {
                 flex-direction: column;
             }
 
             .btn {
                 width: 100%;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -568,7 +1017,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -578,18 +1027,67 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Hi, I'm <span>Hasnain Khan</span></h1>
-                <p>Digital Marketing Specialist & Performance Marketing Expert</p>
-                <p style="font-size: 1rem; margin-bottom: 1rem;">Building high-converting marketing funnels with GoHighLevel, Meta Ads, and Data-Driven Strategies</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#portfolio" class="btn btn-secondary">View My Work</a>
+                <div class="hero-text">
+                    <h1>Digital Marketing Expert</h1>
+                    <p class="subtitle">Drive Growth with Smarter Digital Marketing</p>
+                    <p>Strategic and results-focused digital marketer specializing in performance marketing, funnel design, and marketing automation. Helping businesses drive qualified leads, improve conversion rates, and scale efficiently.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Get Started Today
+                        </a>
+                        <a href="#about" class="btn btn-secondary">
+                            <i class="fas fa-arrow-down"></i> Learn More
+                        </a>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 9220532769</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>Prof.hasnen@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <div class="profile-card-inner">
+                            <div class="profile-card-front">
+                                <div style="width: 180px; height: 180px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; border: 5px solid white;">👤</div>
+                                <h3>Hasnen Khan</h3>
+                                <p>Digital Marketing Specialist</p>
+                            </div>
+                            <div class="profile-card-back">
+                                <h4>Let's Connect!</h4>
+                                <p>Hover to flip • Click to explore • Scroll to discover more about my expertise and services</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="scroll-indicator">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">2.2K+</div>
+                    <div class="stat-label">LinkedIn Followers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Connections</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
             </div>
         </div>
     </section>
@@ -597,42 +1095,32 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">About <span>Me</span></h2>
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <h3>Results-Driven Digital Marketer</h3>
-                    <p>I'm a results-driven digital marketing specialist with core expertise in the GoHighLevel platform. I help businesses scale by building automated, high-converting marketing funnels. From paid advertising to complex automations, I architect and execute strategies that turn clicks into customers.</p>
-                    <p>With a foundation in performance marketing and a passion for marketing automation, I've helped numerous businesses achieve their growth goals through data-backed strategies and innovative marketing ecosystems.</p>
-                    <p>Whether it's building conversion-optimized funnels, managing multi-channel campaigns, or creating sophisticated automation workflows, I deliver measurable results that impact the bottom line.</p>
-                </div>
-                <div>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Campaigns Managed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">150%</div>
-                            <div class="stat-label">Avg. ROI Growth</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">30+</div>
-                            <div class="stat-label">Clients Served</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">$2M+</div>
-                            <div class="stat-label">Revenue Generated</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-label">Client Satisfaction</div>
-                        </div>
+                <p>Strategic and results-focused digital marketer with a strong foundation in performance marketing, funnel design, and marketing automation. I specialize in building high-converting customer journeys using tools like GoHighLevel, helping businesses drive qualified leads, improve conversion rates, and scale efficiently.</p>
+                
+                <p>From crafting advanced sales funnels to implementing email automation and CRM workflows, I bring a systems-driven approach to every campaign—backed by data, creativity, and a deep understanding of user behavior.</p>
+
+                <div class="highlights">
+                    <div class="highlight-item">
+                        <strong>💼 Performance Marketing</strong>
+                        <p>Data-driven campaigns that deliver measurable ROI and sustainable growth</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>🔧 Funnel & Automation</strong>
+                        <p>GoHighLevel expert for sales funnels, email automation & CRM workflows</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>💻 Technical Skills</strong>
+                        <p>HTML/CSS, Python, C++ for custom solutions and seamless integration</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>🎨 Creative Design</strong>
+                        <p>Graphic design & visual storytelling expertise across all platforms</p>
                     </div>
                 </div>
+
+                <p style="margin-top: 2rem;"><strong>What sets me apart:</strong> My ability to think holistically—bridging creative, technical, and strategic perspectives to solve problems and deliver real growth. Currently focused on helping brands and businesses build scalable, high-performance marketing ecosystems.</p>
             </div>
         </div>
     </section>
@@ -640,37 +1128,37 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">My <span>Services</span></h2>
+            <h2 class="section-title">Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Performance Marketing</h3>
-                    <p>Driving targeted traffic with data-backed strategies in Google Ads, Meta Ads, and social media campaigns. Every dollar spent is optimized for maximum ROI.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚙️</div>
-                    <h3>GoHighLevel Funnels</h3>
-                    <p>Building, managing, and optimizing your entire GHL ecosystem, from landing pages to sales pipelines. Complete funnel architecture for conversion optimization.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🤖</div>
-                    <h3>Marketing Automation</h3>
-                    <p>Creating complex workflows, email/SMS campaigns, and triggers in GHL to nurture leads automatically. Scale your business without scaling your team.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✍️</div>
-                    <h3>SEO & Content Strategy</h3>
-                    <p>Boosting organic visibility and establishing authority through targeted SEO and high-value content. Long-term sustainable growth through organic channels.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>Conversion Rate Optimization</h3>
-                    <p>Analyzing user behavior and optimizing every touchpoint to increase conversion rates. A/B testing and data analysis to maximize sales.</p>
-                </div>
-                <div class="service-card">
                     <div class="service-icon">📊</div>
-                    <h3>Analytics & Reporting</h3>
-                    <p>Comprehensive tracking, reporting, and analysis of all marketing metrics. Data-driven insights to guide strategic decisions and identify growth opportunities.</p>
+                    <h3>Performance Marketing</h3>
+                    <p>Data-driven campaigns optimized for conversions, ROI, and scalable growth across all channels</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📧</div>
+                    <h3>Email Marketing</h3>
+                    <p>Strategic email campaigns with automation workflows and CRM integration for maximum engagement</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Digital Marketing</h3>
+                    <p>Comprehensive digital strategies covering SEO, SEM, social media, and content marketing</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Graphic Design</h3>
+                    <p>Professional design for branding, marketing materials, and compelling visual content</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎬</div>
+                    <h3>Video Editing</h3>
+                    <p>High-quality video production and editing for engaging marketing campaigns</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>IT Consulting</h3>
+                    <p>Technical guidance for business operations and digital transformation initiatives</p>
                 </div>
             </div>
         </div>
@@ -679,179 +1167,162 @@
     <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
-            <h2 class="section-title">My <span>Skills</span></h2>
+            <h2 class="section-title">Core Skills</h2>
             <div class="skills-grid">
                 <div class="skill-badge">
-                    <h4>Meta Ads</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 95%"></div>
-                    </div>
+                    <strong>Google Ads</strong>
+                    <p>Display, Search & Video</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>Google Ads</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 90%"></div>
-                    </div>
+                    <strong>Facebook Ads</strong>
+                    <p>Campaign Management</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>GoHighLevel</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 98%"></div>
-                    </div>
+                    <strong>Email Automation</strong>
+                    <p>HubSpot & GoHighLevel</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>Funnel Building</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 95%"></div>
-                    </div>
+                    <strong>SEO</strong>
+                    <p>Search Engine Optimization</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>Email Marketing</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 92%"></div>
-                    </div>
+                    <strong>Content Marketing</strong>
+                    <p>Strategy & Creation</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>CRM Automation</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 93%"></div>
-                    </div>
+                    <strong>Social Media</strong>
+                    <p>Strategy & Management</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>Content Marketing</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 88%"></div>
-                    </div>
+                    <strong>HTML/CSS</strong>
+                    <p>Web Development</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>SEO Strategy</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 85%"></div>
-                    </div>
+                    <strong>Graphic Design</strong>
+                    <p>Adobe Photoshop</p>
                 </div>
                 <div class="skill-badge">
-                    <h4>Data Analytics</h4>
-                    <div class="skill-level">
-                        <div class="skill-level-bar" style="--width: 89%"></div>
-                    </div>
+                    <strong>Python & C++</strong>
+                    <p>Programming</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
         <div class="container">
-            <h2 class="section-title">My <span>Work</span></h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-card">
-                    <div class="portfolio-header">
-                        <h3>Galaxy Fluence Platform</h3>
-                    </div>
-                    <div class="portfolio-content">
-                        <p>A comprehensive digital marketing platform focused on performance-driven campaigns and GoHighLevel automation systems.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">GoHighLevel</span>
-                            <span class="tag">Automation</span>
-                        </div>
-                    </div>
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Information Technology Teacher</h3>
+                <div class="experience-meta">
+                    <span><i class="fas fa-building"></i> IIT Computer Education</span>
+                    <span><i class="fas fa-briefcase"></i> Full-time</span>
+                    <span><i class="fas fa-calendar"></i> Apr 2024 - Sep 2025</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Yamuna Vihar, Delhi</span>
                 </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-header">
-                        <h3>E-commerce Funnel Optimization</h3>
-                    </div>
-                    <div class="portfolio-content">
-                        <p>Designed and implemented high-converting sales funnels that increased conversion rates by 150% and generated significant revenue growth.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Funnels</span>
-                            <span class="tag">CRO</span>
-                        </div>
-                    </div>
+                <p>Responsible for teaching professional and diploma-level courses in Information Technology, Accounting, Design, and Programming. Focus on delivering practical, hands-on training with emphasis on real-world applications and industry best practices.</p>
+                <p style="margin-top: 1rem;"><strong>Key Skills:</strong> Graphic Design, Adobe Photoshop, Teaching, Curriculum Development, Technical Training</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Credentials</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <h4>🔍 Google Ads Certifications</h4>
+                    <p><strong>Display, Search & Video</strong></p>
+                    <p>Issued Apr 2026 | Expires Apr 2027</p>
                 </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-header">
-                        <h3>Meta Ads Campaign Series</h3>
-                    </div>
-                    <div class="portfolio-content">
-                        <p>Managed multi-channel Meta Ads campaigns for B2B and B2C clients, achieving consistent ROAS of 4:1 or higher across diverse industries.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Meta Ads</span>
-                            <span class="tag">Performance</span>
-                        </div>
-                    </div>
+                <div class="cert-card">
+                    <h4>📧 HubSpot Certifications</h4>
+                    <p><strong>Email, Social Media, Content & SEO</strong></p>
+                    <p>Issued Apr 2026 | Multiple Expirations</p>
                 </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-header">
-                        <h3>Lead Generation System</h3>
-                    </div>
-                    <div class="portfolio-content">
-                        <p>Built automated lead generation and nurturing workflows that delivered 500+ qualified leads per month with minimal manual intervention.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Automation</span>
-                            <span class="tag">Leads</span>
-                        </div>
-                    </div>
+                <div class="cert-card">
+                    <h4>💻 Microsoft Office Skills</h4>
+                    <p><strong>MindLuster Certified</strong></p>
+                    <p>Issued Mar 2025 | ID: a3605c72</p>
                 </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-header">
-                        <h3>Content Marketing Strategy</h3>
-                    </div>
-                    <div class="portfolio-content">
-                        <p>Developed and executed comprehensive content strategies that established authority in niche markets and drove organic traffic growth.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Content</span>
-                            <span class="tag">SEO</span>
-                        </div>
-                    </div>
+                <div class="cert-card">
+                    <h4>🎓 Advanced Diploma in IT</h4>
+                    <p><strong>IIT Computer Education</strong></p>
+                    <p>Issued May 2023</p>
                 </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-header">
-                        <h3>Email Marketing Campaigns</h3>
-                    </div>
-                    <div class="portfolio-content">
-                        <p>Created and optimized email sequences that generated millions in revenue through strategic segmentation and personalization.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Email</span>
-                            <span class="tag">Conversion</span>
-                        </div>
-                    </div>
+                <div class="cert-card">
+                    <h4>📚 Master's in Digital Marketing</h4>
+                    <p><strong>SkillCircle™</strong></p>
+                    <p>Sep 2025 - Mar 2026</p>
+                </div>
+                <div class="cert-card">
+                    <h4>🎓 Bachelor of Arts</h4>
+                    <p><strong>Delhi University</strong></p>
+                    <p>Political Science & Government</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
         <div class="container">
-            <h2 class="section-title">Let's Work <span>Together</span></h2>
-            <div class="contact-content">
-                <p>Ready to scale your business with results-driven digital marketing strategies? Let's connect and discuss how I can help.</p>
-                <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/hasnain-khan-digital-marketing/" class="contact-link" target="_blank">
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://hasnain-pathan.netlify.app/" class="contact-link" target="_blank">
-                        <span>Portfolio Site</span>
-                    </a>
-                    <a href="https://hasnainkhandigital.blogspot.com/" class="contact-link" target="_blank">
-                        <span>Blog</span>
-                    </a>
-                    <a href="mailto:hasnain@example.com" class="contact-link">
-                        <span>Email</span>
-                    </a>
-                </div>
+            <h2>Ready to Grow Your Business?</h2>
+            <p>Let's discuss how I can help you build a scalable, high-performance marketing ecosystem.</p>
+            <div class="cta-buttons">
+                <a href="mailto:Prof.hasnen@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Send Email
+                </a>
+                <a href="tel:+919220532769" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Hasnain Khan. All rights reserved. Based in Delhi, India.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/hasnen-khan-digital-marketing/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:Prof.hasnen@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="tel:+919220532769" title="Phone">
+                <i class="fas fa-phone"></i>
+            </a>
         </div>
+        <p>&copy; 2026 Hasnen Khan. All rights reserved.</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem;">Digital Marketing Expert | Greater Delhi Area | He/Him</p>
     </footer>
 
+    <!-- Scroll Animation Script -->
     <script>
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Add scroll-animate class to elements
+        document.querySelectorAll('.service-card, .skill-badge, .cert-card, .highlight-item, .experience-item').forEach(el => {
+            el.classList.add('scroll-animate');
+            observer.observe(el);
+        });
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -866,24 +1337,65 @@
             });
         });
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
+                }
+            }, 16);
+        }
 
-        const observer = new IntersectionObserver(function(entries) {
+        // Trigger counter animation on scroll
+        const statsObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideUp 0.8s ease-out forwards';
-                    observer.unobserve(entry.target);
+                    document.querySelectorAll('.stat-number').forEach(stat => {
+                        const text = stat.textContent;
+                        const number = parseInt(text.replace(/\D/g, ''));
+                        animateCounter(stat, number);
+                    });
+                    statsObserver.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.5 });
 
-        document.querySelectorAll('.service-card, .portfolio-card, .skill-badge').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero::before, .hero::after');
+            parallaxElements.forEach(el => {
+                el.style.transform = `translateY(${scrolled * 0.5}px)`;
+            });
+        });
+
+        // Add active state to nav links
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
