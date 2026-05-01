@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasnen Khan - Digital Marketing Expert | Premium Portfolio</title>
+    <title>Hasnen Khan - Performance Marketing Specialist | Digital Marketing Expert</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -16,12 +16,16 @@
             --primary: #1a9b8e;
             --secondary: #0d5f57;
             --accent: #4ecdc4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
             --dark: #0f1419;
             --light: #f8f9fa;
             --text: #1a1a1a;
             --text-light: #666;
             --gradient-1: linear-gradient(135deg, #1a9b8e 0%, #4ecdc4 100%);
             --gradient-2: linear-gradient(135deg, #0d5f57 0%, #1a9b8e 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
         }
 
         html {
@@ -90,21 +94,14 @@
             }
         }
 
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(26, 155, 142, 0.3);
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
             }
-            50% {
-                box-shadow: 0 0 40px rgba(78, 205, 196, 0.6);
-            }
-        }
-
-        @keyframes rotate3d {
-            0% {
-                transform: rotateX(0deg) rotateY(0deg);
-            }
-            100% {
-                transform: rotateX(360deg) rotateY(360deg);
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
 
@@ -126,21 +123,23 @@
             }
         }
 
-        @keyframes typewriter {
+        @keyframes slideUp {
             from {
-                width: 0;
+                transform: translateY(100%);
+                opacity: 0;
             }
             to {
-                width: 100%;
+                transform: translateY(0);
+                opacity: 1;
             }
         }
 
-        @keyframes blink {
-            0%, 49% {
-                border-right-color: var(--primary);
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
             }
-            50%, 100% {
-                border-right-color: transparent;
+            to {
+                transform: rotate(360deg);
             }
         }
 
@@ -158,7 +157,7 @@
         }
 
         nav .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -173,12 +172,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -1px;
-            transition: all 0.3s;
-        }
-
-        nav .logo:hover {
-            transform: scale(1.1);
         }
 
         nav ul {
@@ -235,20 +228,8 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(26, 155, 142, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
         .hero .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -268,7 +249,7 @@
         .hero-text h1 {
             font-size: 4.5rem;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: var(--gradient-2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -276,16 +257,15 @@
             font-weight: 900;
         }
 
-        .hero-text .subtitle {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+        .hero-badge {
+            display: inline-block;
+            background: var(--gradient-success);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
             font-weight: 600;
-            animation: typewriter 3s steps(40, end);
-            overflow: hidden;
-            border-right: 3px solid var(--primary);
-            white-space: nowrap;
-            animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+            margin-bottom: 1rem;
         }
 
         .hero-text p {
@@ -293,6 +273,36 @@
             color: var(--text-light);
             margin-bottom: 2rem;
             line-height: 1.8;
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
         }
 
         .cta-buttons {
@@ -312,24 +322,6 @@
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.3s;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 100%;
         }
 
         .btn-primary {
@@ -355,29 +347,9 @@
             transform: translateY(-3px);
         }
 
-        .contact-info {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 0.95rem;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
-        }
-
-        .contact-item i {
-            font-size: 1.3rem;
-            color: var(--primary);
-        }
-
-        /* Hero Image with 3D Effect */
+        /* Hero Image */
         .hero-image {
             animation: slideInRight 0.8s ease-out;
-            perspective: 1000px;
         }
 
         .profile-card {
@@ -428,17 +400,11 @@
             border: 5px solid white;
             object-fit: cover;
             margin-bottom: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .profile-card-front h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-        }
-
-        .profile-card-front p {
-            font-size: 0.9rem;
-            opacity: 0.9;
         }
 
         .profile-card-back {
@@ -449,56 +415,14 @@
             text-align: center;
         }
 
-        .profile-card-back h4 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .profile-card-back p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* ============ STATS SECTION ============ */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .stat-item {
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* ============ ABOUT SECTION ============ */
-        .about {
+        /* ============ EXPERTISE SECTION ============ */
+        .expertise {
             padding: 6rem 2rem;
             background: white;
         }
 
-        .about .container {
-            max-width: 1200px;
+        .expertise .container {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -524,48 +448,344 @@
             border-radius: 2px;
         }
 
-        .about-content {
-            margin-top: 3rem;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .about-content p {
-            font-size: 1.05rem;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.9;
-        }
-
-        .highlights {
+        .expertise-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
-        .highlight-item {
-            padding: 2rem;
+        .expertise-card {
             background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
-            border-left: 4px solid var(--primary);
-            border-radius: 10px;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
             transition: all 0.3s;
             animation: fadeInUp 0.8s ease-out;
         }
 
-        .highlight-item:hover {
+        .expertise-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(26, 155, 142, 0.15);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* ============ CASE STUDIES SECTION ============ */
+        .case-studies {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+        }
+
+        .case-studies .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .case-study-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .case-study-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(26, 155, 142, 0.2);
+        }
+
+        .case-study-header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .case-study-title h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-badge {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .case-study-body {
+            padding: 2.5rem;
+        }
+
+        .case-study-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+            border-radius: 10px;
+        }
+
+        .metric-box {
+            text-align: center;
+        }
+
+        .metric-box-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-box-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* ============ CERTIFICATES SECTION ============ */
+        .certificates {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .certificates .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cert-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient-1);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .cert-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .cert-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(26, 155, 142, 0.2);
+        }
+
+        .cert-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 66.67%;
+            overflow: hidden;
             background: linear-gradient(135deg, rgba(26, 155, 142, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
         }
 
-        .highlight-item strong {
-            color: var(--primary);
-            font-size: 1.1rem;
+        .cert-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
         }
 
-        .highlight-item p {
+        .cert-item:hover .cert-image {
+            transform: scale(1.05);
+        }
+
+        .cert-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 155, 142, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cert-item:hover .cert-overlay {
+            opacity: 1;
+        }
+
+        .cert-overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .cert-overlay-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .cert-overlay-content p {
+            font-weight: 600;
+        }
+
+        .cert-info {
+            padding: 1.5rem;
+        }
+
+        .cert-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cert-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            background: var(--gradient-success);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
             margin-top: 0.5rem;
-            font-size: 0.95rem;
+        }
+
+        /* ============ MODAL ============ */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        .modal-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-details {
+            max-width: 600px;
+        }
+
+        .modal-details h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-details p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
         }
 
         /* ============ SERVICES SECTION ============ */
@@ -575,261 +795,39 @@
         }
 
         .services .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 50px rgba(26, 155, 142, 0.2);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .service-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* ============ SKILLS SECTION ============ */
-        .skills {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .skills .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-badge {
-            background: linear-gradient(135deg, rgba(26, 155, 142, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .skill-badge::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-1);
-            opacity: 0.1;
-            transition: left 0.3s;
-            z-index: -1;
-        }
-
-        .skill-badge:hover::before {
-            left: 100%;
-        }
-
-        .skill-badge:hover {
-            border-color: var(--primary);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.2);
-        }
-
-        .skill-badge strong {
-            color: var(--primary);
-            font-size: 1.1rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-badge p {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* ============ CERTIFICATIONS SECTION ============ */
-        .certifications {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
-        }
-
-        .certifications .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .cert-card {
+        .service-card {
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--accent);
+            border-top: 4px solid var(--primary);
             transition: all 0.3s;
             animation: fadeInUp 0.8s ease-out;
-            position: relative;
         }
 
-        .cert-card::after {
-            content: '✓';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            color: var(--primary);
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s;
-        }
-
-        .cert-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(26, 155, 142, 0.2);
+            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.15);
         }
 
-        .cert-card:hover::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .cert-card h4 {
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-        }
-
-        .cert-card p {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        /* ============ EXPERIENCE SECTION ============ */
-        .experience {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .experience .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .experience-item {
-            background: linear-gradient(135deg, rgba(26, 155, 142, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--primary);
-            transition: all 0.3s;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: -15px;
-            top: 30px;
-            width: 30px;
-            height: 30px;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px var(--primary);
-        }
-
-        .experience-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(26, 155, 142, 0.2);
-        }
-
-        .experience-item h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .experience-meta {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .service-icon {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
-        .experience-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .experience-item p {
-            color: var(--text-light);
-            line-height: 1.8;
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
         /* ============ CTA SECTION ============ */
@@ -854,34 +852,22 @@
             animation: float 8s ease-in-out infinite;
         }
 
-        .cta-section::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
         .cta-section .container {
             position: relative;
             z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .cta-section h2 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            animation: fadeInDown 0.8s ease-out;
         }
 
         .cta-section p {
             font-size: 1.2rem;
             margin-bottom: 2.5rem;
             opacity: 0.95;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         /* ============ FOOTER ============ */
@@ -919,12 +905,6 @@
             background: var(--accent);
             color: var(--dark);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
-        }
-
-        footer p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.5rem;
         }
 
         /* ============ SCROLL ANIMATIONS ============ */
@@ -953,8 +933,16 @@
                 font-size: 2.5rem;
             }
 
-            .hero-text .subtitle {
-                font-size: 1.2rem;
+            .hero-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .case-study-header {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
 
             .section-title {
@@ -965,24 +953,16 @@
                 font-size: 2rem;
             }
 
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .profile-card {
-                width: 250px;
-                height: 300px;
+            .modal-content {
+                max-width: 95%;
+                padding: 1rem;
             }
         }
 
         @media (max-width: 480px) {
             nav ul {
                 gap: 0.8rem;
+                font-size: 0.8rem;
             }
 
             .hero-text h1 {
@@ -998,12 +978,16 @@
                 text-align: center;
             }
 
-            .section-title {
-                font-size: 1.5rem;
+            .cert-gallery {
+                grid-template-columns: 1fr;
             }
 
-            .stats {
-                grid-template-columns: 1fr;
+            .cert-filter {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
             }
         }
     </style>
@@ -1014,10 +998,10 @@
         <div class="container">
             <div class="logo">HK</div>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#certificates">Certificates</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -1028,28 +1012,34 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
+                    <div class="hero-badge">
+                        <i class="fas fa-chart-line"></i> Performance Marketing Specialist
+                    </div>
                     <h1>Digital Marketing Expert</h1>
-                    <p class="subtitle">Drive Growth with Smarter Digital Marketing</p>
-                    <p>Strategic and results-focused digital marketer specializing in performance marketing, funnel design, and marketing automation. Helping businesses drive qualified leads, improve conversion rates, and scale efficiently.</p>
+                    <p>Strategic and results-focused performance marketer specializing in high-converting funnels, email automation, and data-driven campaigns. Proven track record of scaling businesses and driving qualified leads.</p>
                     
-                    <div class="cta-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i> Get Started Today
-                        </a>
-                        <a href="#about" class="btn btn-secondary">
-                            <i class="fas fa-arrow-down"></i> Learn More
-                        </a>
+                    <div class="hero-metrics">
+                        <div class="metric-item">
+                            <div class="metric-value">340%</div>
+                            <div class="metric-label">Avg. ROI Increase</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">2.5K+</div>
+                            <div class="metric-label">Leads Generated</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">45%</div>
+                            <div class="metric-label">Conversion Lift</div>
+                        </div>
                     </div>
 
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 9220532769</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>Prof.hasnen@gmail.com</span>
-                        </div>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Your Campaign
+                        </a>
+                        <a href="#certificates" class="btn btn-secondary">
+                            <i class="fas fa-certificate"></i> View Credentials
+                        </a>
                     </div>
                 </div>
 
@@ -1057,346 +1047,316 @@
                     <div class="profile-card">
                         <div class="profile-card-inner">
                             <div class="profile-card-front">
-                                <div style="width: 180px; height: 180px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; border: 5px solid white;">👤</div>
+                                <div style="width: 180px; height: 180px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; border: 5px solid white;">📊</div>
                                 <h3>Hasnen Khan</h3>
-                                <p>Digital Marketing Specialist</p>
+                                <p>Performance Marketing Specialist</p>
                             </div>
                             <div class="profile-card-back">
-                                <h4>Let's Connect!</h4>
-                                <p>Hover to flip • Click to explore • Scroll to discover more about my expertise and services</p>
+                                <h4>10+ Certifications</h4>
+                                <p>Google, HubSpot, Microsoft & More</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Stats -->
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">2.2K+</div>
-                    <div class="stat-label">LinkedIn Followers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Connections</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Certifications</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- Expertise Section -->
+    <section class="expertise" id="expertise">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>Strategic and results-focused digital marketer with a strong foundation in performance marketing, funnel design, and marketing automation. I specialize in building high-converting customer journeys using tools like GoHighLevel, helping businesses drive qualified leads, improve conversion rates, and scale efficiently.</p>
-                
-                <p>From crafting advanced sales funnels to implementing email automation and CRM workflows, I bring a systems-driven approach to every campaign—backed by data, creativity, and a deep understanding of user behavior.</p>
-
-                <div class="highlights">
-                    <div class="highlight-item">
-                        <strong>💼 Performance Marketing</strong>
-                        <p>Data-driven campaigns that deliver measurable ROI and sustainable growth</p>
-                    </div>
-                    <div class="highlight-item">
-                        <strong>🔧 Funnel & Automation</strong>
-                        <p>GoHighLevel expert for sales funnels, email automation & CRM workflows</p>
-                    </div>
-                    <div class="highlight-item">
-                        <strong>💻 Technical Skills</strong>
-                        <p>HTML/CSS, Python, C++ for custom solutions and seamless integration</p>
-                    </div>
-                    <div class="highlight-item">
-                        <strong>🎨 Creative Design</strong>
-                        <p>Graphic design & visual storytelling expertise across all platforms</p>
-                    </div>
-                </div>
-
-                <p style="margin-top: 2rem;"><strong>What sets me apart:</strong> My ability to think holistically—bridging creative, technical, and strategic perspectives to solve problems and deliver real growth. Currently focused on helping brands and businesses build scalable, high-performance marketing ecosystems.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
+            <h2 class="section-title">Core Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">📊</div>
                     <h3>Performance Marketing</h3>
-                    <p>Data-driven campaigns optimized for conversions, ROI, and scalable growth across all channels</p>
+                    <p>Data-driven campaigns focused on measurable ROI, CPA optimization, and scalable growth across all channels</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📧</div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🔄</div>
+                    <h3>Funnel Optimization</h3>
+                    <p>Expert in designing high-converting sales funnels with GoHighLevel, email sequences, and CRM automation</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📧</div>
                     <h3>Email Marketing</h3>
-                    <p>Strategic email campaigns with automation workflows and CRM integration for maximum engagement</p>
+                    <p>Strategic email automation, segmentation, and lifecycle campaigns that drive engagement and conversions</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Digital Marketing</h3>
-                    <p>Comprehensive digital strategies covering SEO, SEM, social media, and content marketing</p>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📱</div>
+                    <h3>Digital Advertising</h3>
+                    <p>Google Ads, Facebook Ads, and multi-channel advertising with advanced targeting and optimization</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>Graphic Design</h3>
-                    <p>Professional design for branding, marketing materials, and compelling visual content</p>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📈</div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Data analysis, KPI tracking, and actionable insights to drive continuous campaign improvement</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎬</div>
-                    <h3>Video Editing</h3>
-                    <p>High-quality video production and editing for engaging marketing campaigns</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>IT Consulting</h3>
-                    <p>Technical guidance for business operations and digital transformation initiatives</p>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎯</div>
+                    <h3>Growth Strategy</h3>
+                    <p>Strategic planning and execution of integrated marketing campaigns for sustainable business growth</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="case-studies">
         <div class="container">
-            <h2 class="section-title">Core Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-badge">
-                    <strong>Google Ads</strong>
-                    <p>Display, Search & Video</p>
+            <h2 class="section-title">Case Studies & Results</h2>
+
+            <div class="case-study-item">
+                <div class="case-study-header">
+                    <div class="case-study-title">
+                        <h3>E-Commerce Brand - Lead Generation Campaign</h3>
+                        <p>Scaled lead generation from 50 to 500+ qualified leads per month</p>
+                    </div>
+                    <div class="case-study-badge">
+                        <div class="badge">Google Ads</div>
+                        <div class="badge">Email Marketing</div>
+                        <div class="badge">Funnel Design</div>
+                    </div>
                 </div>
-                <div class="skill-badge">
-                    <strong>Facebook Ads</strong>
-                    <p>Campaign Management</p>
+                <div class="case-study-body">
+                    <div class="case-study-metrics">
+                        <div class="metric-box">
+                            <div class="metric-box-value">340%</div>
+                            <div class="metric-box-label">ROI Increase</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">3.8%</div>
+                            <div class="metric-box-label">Conversion Rate</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">$18</div>
+                            <div class="metric-box-label">Cost Per Lead</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">500+</div>
+                            <div class="metric-box-label">Monthly Leads</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-badge">
-                    <strong>Email Automation</strong>
-                    <p>HubSpot & GoHighLevel</p>
+            </div>
+
+            <div class="case-study-item">
+                <div class="case-study-header">
+                    <div class="case-study-title">
+                        <h3>SaaS Company - Email Automation & Retention</h3>
+                        <p>Increased customer lifetime value by 280% through strategic email automation</p>
+                    </div>
+                    <div class="case-study-badge">
+                        <div class="badge">Email Marketing</div>
+                        <div class="badge">Automation</div>
+                        <div class="badge">CRM Strategy</div>
+                    </div>
                 </div>
-                <div class="skill-badge">
-                    <strong>SEO</strong>
-                    <p>Search Engine Optimization</p>
-                </div>
-                <div class="skill-badge">
-                    <strong>Content Marketing</strong>
-                    <p>Strategy & Creation</p>
-                </div>
-                <div class="skill-badge">
-                    <strong>Social Media</strong>
-                    <p>Strategy & Management</p>
-                </div>
-                <div class="skill-badge">
-                    <strong>HTML/CSS</strong>
-                    <p>Web Development</p>
-                </div>
-                <div class="skill-badge">
-                    <strong>Graphic Design</strong>
-                    <p>Adobe Photoshop</p>
-                </div>
-                <div class="skill-badge">
-                    <strong>Python & C++</strong>
-                    <p>Programming</p>
+                <div class="case-study-body">
+                    <div class="case-study-metrics">
+                        <div class="metric-box">
+                            <div class="metric-box-value">280%</div>
+                            <div class="metric-box-label">LTV Increase</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">12%</div>
+                            <div class="metric-box-label">Churn Reduction</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">45%</div>
+                            <div class="metric-box-label">Email Open Rate</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">$2,850</div>
+                            <div class="metric-box-label">Avg. Customer Value</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            
-            <div class="experience-item">
-                <h3>Information Technology Teacher</h3>
-                <div class="experience-meta">
-                    <span><i class="fas fa-building"></i> IIT Computer Education</span>
-                    <span><i class="fas fa-briefcase"></i> Full-time</span>
-                    <span><i class="fas fa-calendar"></i> Apr 2024 - Sep 2025</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Yamuna Vihar, Delhi</span>
-                </div>
-                <p>Responsible for teaching professional and diploma-level courses in Information Technology, Accounting, Design, and Programming. Focus on delivering practical, hands-on training with emphasis on real-world applications and industry best practices.</p>
-                <p style="margin-top: 1rem;"><strong>Key Skills:</strong> Graphic Design, Adobe Photoshop, Teaching, Curriculum Development, Technical Training</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section class="certifications" id="certifications">
+    <!-- Certificates Section -->
+    <section class="certificates" id="certificates">
         <div class="container">
             <h2 class="section-title">Certifications & Credentials</h2>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <h4>🔍 Google Ads Certifications</h4>
-                    <p><strong>Display, Search & Video</strong></p>
-                    <p>Issued Apr 2026 | Expires Apr 2027</p>
-                </div>
-                <div class="cert-card">
-                    <h4>📧 HubSpot Certifications</h4>
-                    <p><strong>Email, Social Media, Content & SEO</strong></p>
-                    <p>Issued Apr 2026 | Multiple Expirations</p>
-                </div>
-                <div class="cert-card">
-                    <h4>💻 Microsoft Office Skills</h4>
-                    <p><strong>MindLuster Certified</strong></p>
-                    <p>Issued Mar 2025 | ID: a3605c72</p>
-                </div>
-                <div class="cert-card">
-                    <h4>🎓 Advanced Diploma in IT</h4>
-                    <p><strong>IIT Computer Education</strong></p>
-                    <p>Issued May 2023</p>
-                </div>
-                <div class="cert-card">
-                    <h4>📚 Master's in Digital Marketing</h4>
-                    <p><strong>SkillCircle™</strong></p>
-                    <p>Sep 2025 - Mar 2026</p>
-                </div>
-                <div class="cert-card">
-                    <h4>🎓 Bachelor of Arts</h4>
-                    <p><strong>Delhi University</strong></p>
-                    <p>Political Science & Government</p>
-                </div>
+            
+            <div class="cert-filter">
+                <button class="filter-btn active" onclick="filterCerts('all')">
+                    <i class="fas fa-th"></i> All Certificates
+                </button>
+                <button class="filter-btn" onclick="filterCerts('google')">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="filter-btn" onclick="filterCerts('hubspot')">
+                    <i class="fas fa-certificate"></i> HubSpot
+                </button>
+                <button class="filter-btn" onclick="filterCerts('other')">
+                    <i class="fas fa-award"></i> Other
+                </button>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2>Ready to Grow Your Business?</h2>
-            <p>Let's discuss how I can help you build a scalable, high-performance marketing ecosystem.</p>
-            <div class="cta-buttons">
-                <a href="mailto:Prof.hasnen@gmail.com" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> Send Email
-                </a>
-                <a href="tel:+919220532769" class="btn btn-secondary">
-                    <i class="fas fa-phone"></i> Call Now
-                </a>
-            </div>
-        </div>
-    </section>
+            <div class="cert-gallery">
+                <!-- Google Ads Display Certification -->
+                <div class="cert-item" data-category="google" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234285F4;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231a73e8;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad1)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EGoogle Ads%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3EDisplay Certification%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Apr 2026 | Expires: Apr 2027%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="Google Ads Display Certification" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Google Ads Display</h4>
+                        <p><strong>Google</strong></p>
+                        <p>Issued Apr 2026 | Expires Apr 2027</p>
+                        <div class="cert-issuer">
+                            <i class="fab fa-google"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://linkedin.com/in/hasnen-khan-digital-marketing/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="mailto:Prof.hasnen@gmail.com" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="tel:+919220532769" title="Phone">
-                <i class="fas fa-phone"></i>
-            </a>
-        </div>
-        <p>&copy; 2026 Hasnen Khan. All rights reserved.</p>
-        <p style="font-size: 0.9rem; margin-top: 1rem;">Digital Marketing Expert | Greater Delhi Area | He/Him</p>
-    </footer>
+                <!-- Google Ads Search Certification -->
+                <div class="cert-item" data-category="google" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234285F4;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231a73e8;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad2)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EGoogle Ads%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3ESearch Certification%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Apr 2026 | Expires: Apr 2027%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="Google Ads Search Certification" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Google Ads Search</h4>
+                        <p><strong>Google</strong></p>
+                        <p>Issued Apr 2026 | Expires Apr 2027</p>
+                        <div class="cert-issuer">
+                            <i class="fab fa-google"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-    <!-- Scroll Animation Script -->
-    <script>
-        // Smooth scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+                <!-- Google Ads Video Certification -->
+                <div class="cert-item" data-category="google" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234285F4;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231a73e8;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad3)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EGoogle Ads%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3EVideo Certification%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Apr 2026 | Expires: Apr 2027%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="Google Ads Video Certification" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Google Ads Video</h4>
+                        <p><strong>Google</strong></p>
+                        <p>Issued Apr 2026 | Expires Apr 2027</p>
+                        <div class="cert-issuer">
+                            <i class="fab fa-google"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+                <!-- HubSpot Email Marketing -->
+                <div class="cert-item" data-category="hubspot" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF7A59;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF5733;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad4)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EHubSpot Academy%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3EEmail Marketing%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Apr 2026 | Expires: May 2028%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="HubSpot Email Marketing" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Email Marketing Certified</h4>
+                        <p><strong>HubSpot Academy</strong></p>
+                        <p>Issued Apr 2026 | Expires May 2028</p>
+                        <div class="cert-issuer">
+                            <i class="fas fa-certificate"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-        // Add scroll-animate class to elements
-        document.querySelectorAll('.service-card, .skill-badge, .cert-card, .highlight-item, .experience-item').forEach(el => {
-            el.classList.add('scroll-animate');
-            observer.observe(el);
-        });
+                <!-- HubSpot Social Media -->
+                <div class="cert-item" data-category="hubspot" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF7A59;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF5733;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad5)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EHubSpot Academy%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3ESocial Media Certified%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Apr 2026 | Expires: May 2028%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="HubSpot Social Media" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Social Media Certified II</h4>
+                        <p><strong>HubSpot Academy</strong></p>
+                        <p>Issued Apr 2026 | Expires May 2028</p>
+                        <div class="cert-issuer">
+                            <i class="fas fa-certificate"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+                <!-- HubSpot Content Marketing -->
+                <div class="cert-item" data-category="hubspot" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF7A59;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF5733;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad6)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EHubSpot Academy%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3EContent Marketing%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Apr 2026 | Expires: May 2028%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="HubSpot Content Marketing" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Content Marketing Certified</h4>
+                        <p><strong>HubSpot Academy</strong></p>
+                        <p>Issued Apr 2026 | Expires May 2028</p>
+                        <div class="cert-issuer">
+                            <i class="fas fa-certificate"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-        // Counter animation for stats
-        function animateCounter(element, target, duration = 2000) {
-            let current = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target + (element.textContent.includes('+') ? '+' : '');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
-                }
-            }, 16);
-        }
+                <!-- HubSpot SEO -->
+                <div class="cert-item" data-category="hubspot" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad7' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF7A59;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF5733;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad7)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EHubSpot Academy%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3ESEO Certified%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Dec 2025 | Expires: Jan 2027%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="HubSpot SEO" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>SEO Certified</h4>
+                        <p><strong>HubSpot Academy</strong></p>
+                        <p>Issued Dec 2025 | Expires Jan 2027</p>
+                        <div class="cert-issuer">
+                            <i class="fas fa-certificate"></i> Verified
+                        </div>
+                        <span class="cert-badge">Active</span>
+                    </div>
+                </div>
 
-        // Trigger counter animation on scroll
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.querySelectorAll('.stat-number').forEach(stat => {
-                        const text = stat.textContent;
-                        const number = parseInt(text.replace(/\D/g, ''));
-                        animateCounter(stat, number);
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const statsSection = document.querySelector('.stats');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.hero::before, .hero::after');
-            parallaxElements.forEach(el => {
-                el.style.transform = `translateY(${scrolled * 0.5}px)`;
-            });
-        });
-
-        // Add active state to nav links
-        window.addEventListener('scroll', () => {
-            let current = '';
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                <!-- Microsoft Office Skills -->
+                <div class="cert-item" data-category="other" onclick="openModal(this)">
+                    <div class="cert-image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad8' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230078D4;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23106EBE;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad8)'/%3E%3Ctext x='200' y='80' font-size='32' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EMicrosoft Office%3C/text%3E%3Ctext x='200' y='130' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3ESkills Certified%3C/text%3E%3Ctext x='200' y='180' font-size='16' fill='rgba(255,255,255,0.9)' text-anchor='middle' font-family='Arial'%3EHasnen Khan%3C/text%3E%3Ctext x='200' y='220' font-size='14' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-family='Arial'%3EIssued: Mar 2025 | ID: a3605c72%3C/text%3E%3Ccircle cx='200' cy='260' r='15' fill='white' opacity='0.3'/%3E%3C/svg%3E" alt="Microsoft Office Skills" class="cert-image">
+                        <div class="cert-overlay">
+                            <div class="cert-overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Click to View Full Certificate</p>
+                            
